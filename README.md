@@ -45,3 +45,36 @@ Definendo due nuovi step, nel seguente modo:
         }
     }
 ```
+
+Ho creato un sistema che riconosce in automatico l'operazione da testare con il valore risultate: 
+```
+Scenario Outline: Evaluating arithmetic operations with two integer parameters
+    Given I have a Calculator
+    When I provide a first number <n1> and a second number <n2>
+    Then the operation evaluates to <result> with the operator <op>
+    Examples:
+      | op  |n1|n2|result|
+      | "+" | 4| 5|     9|
+      | "-" | 8| 5|     3|
+      | "*" | 7| 2|    14|
+      | "/" | 6| 2|     3|
+```
+
+Evidenziando lo step che implementa la logica: 
+```
+@Then("the operation evaluates to {int} with the operator {string}")
+public void theOperationEvaluatesToResult(int arg0, String arg1) {
+    switch (arg1) {
+        case "+"	->	this.calculator.add();
+        case "-"	->	this.calculator.subtract();
+        case "*"	->	this.calculator.multiply();
+        case "/"	->	this.calculator.divide();
+        default		->	throw new IllegalStateException();
+    }
+    if (arg0 != this.calculator.getResult()) {
+        throw new IllegalStateException();
+    }
+}
+```
+
+Facendo ciò si può simulare a pieno il comportamento della calcolatrice e volendo aggiungere e testare una qualsiasi operazione facilmente.
