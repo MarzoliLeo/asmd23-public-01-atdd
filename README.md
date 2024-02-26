@@ -4,7 +4,7 @@
 Specification: the repo has a calculator example (with Gherkin specification, step implementation, and production code). Play with it. Add examples
 and operations, use all Gherkin features. Strictly use ATDD. Does everything work as expected?
 
-#### Task 1: Esecuzione.
+#### Task 1: Implementazione.
 Installando correttamente i plugin, Gherking e Cucumber for Java, tutti i test eseguono correttamente. 
 
 **Ho voluto testare le funzionalità del linguaggio** inserendo una nuova operazione di moltiplicazione nella calcolatrice e ho definito dei nuovi scenarios in Gherkin, seguendo le varie modalità equivalenti tra di loro.
@@ -79,3 +79,89 @@ public void theOperationEvaluatesToResult(int arg0, String arg1) {
 ```
 
 Facendo ciò si può simulare a pieno il comportamento della calcolatrice e volendo aggiungere e testare una qualsiasi operazione facilmente.
+
+### Task 2: Tooling.
+Specification: Experiment with installing/using Cucumber with Scala and/or in VSCode. Is VSCode better at all here? Does Cucumber play well with
+Scala 3?
+
+Per poter utilizzare cucumber in Scala bisogna integrare un nuovo plugin "Cucumber for Scala" se lo si vuole utilizzare in IntelliJ.
+
+#### Task 2: Implementazione.
+
+All'interno del progetto si è implementata una versione differente della calcolatrice in Scala3. Questa appare nel seguente modo:
+```
+trait CalculatorScala {
+  def enter(i: Int): Unit
+  def add(): Unit
+  def multiply(): Unit
+  def subtract(): Unit
+  def divide(): Unit
+  def getResult: Int
+  def binaryOperation(operation: (Int, Int) => Int): Unit
+
+}
+
+object CalculatorScala {
+  private class CalculatorScalaImpl() extends CalculatorScala{
+    private var numbers = List.empty[Int]
+    override def enter(i: Int): Unit =
+      numbers = numbers :+ i
+      if (numbers.length > 2)
+        throw new IllegalStateException
+
+    override def add(): Unit = binaryOperation(_ + _)
+
+    override def multiply(): Unit = binaryOperation(_ * _)
+
+    override def subtract(): Unit =
+      if (numbers.head >= numbers(1))
+        binaryOperation(_ - _)
+      else
+        throw new ArithmeticException
+
+    override def divide(): Unit =
+      if (numbers(1) != 0 && (numbers.head != 0 && numbers(1) != 0))
+        binaryOperation(_ / _)
+      else
+        throw new ArithmeticException
+
+    override def getResult: Int = {
+      if (numbers.length != 1)
+        throw new IllegalStateException
+      numbers.head
+    }
+
+    override def binaryOperation(operation: (Int, Int) => Int): Unit = {
+      if (numbers.length != 2)
+        throw new IllegalStateException
+      numbers = List(operation(numbers.head, numbers(1)))
+    }
+  }
+
+  def apply() : CalculatorScala = new CalculatorScalaImpl
+}
+```
+si è poi definito un nuovo "calculator Step" che utilizza i metodi offerti da questa nuova implementazione:
+```
+@Given("I have a Scala Calculator")
+    public void iHaveAScalaCalculator(){ this.calculatorScala = CalculatorScala.apply(); }
+```
+e si è modificato opportunamente tutte le stringhe degli acceptance test per fare riferimento all'utilizzo del nuovo calcolatore Scala, ecco un esempio:
+```
+Scenario Outline: Evaluating arithmetic operations with two integer parameters
+    Given I have a Scala Calculator
+    When In scala I provide a first number <n1> and a second number <n2>
+    Then In scala the operation evaluates to <result> with the operator <op>
+    Examples:
+      | op  |n1|n2|result|
+      | "+" | 4| 5|     9|
+      | "-" | 8| 5|     3|
+      | "*" | 7| 2|    14|
+      | "/" | 6| 2|     3|
+```
+
+Facendo così gli acceptance test eseguono tutti correttamente e il sistema ATDD è perfettamente integrato in Scala3. 
+
+
+
+
