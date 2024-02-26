@@ -7,7 +7,7 @@ and operations, use all Gherkin features. Strictly use ATDD. Does everything wor
 #### Task 1: Esecuzione.
 Installando correttamente i plugin, Gherking e Cucumber for Java, tutti i test eseguono correttamente. 
 
-Ho voluto testare le funzionalità del linguaggio inserendo una nuova operazione di moltiplicazione nella calcolatrice e ho definito dei nuovi scenarios in Gherkin, seguendo le varie modalità equivalenti tra di loro.
+**Ho voluto testare le funzionalità del linguaggio** inserendo una nuova operazione di moltiplicazione nella calcolatrice e ho definito dei nuovi scenarios in Gherkin, seguendo le varie modalità equivalenti tra di loro.
 ```
 Scenario: Multiply two numbers
     Given I have a Calculator
@@ -46,7 +46,8 @@ Definendo due nuovi step, nel seguente modo:
     }
 ```
 
-**Ho creato un sistema che riconosce in automatico l'operazione da testare con il valore risultate: **
+**Ho creato un sistema che riconosce in automatico l'operazione da testare con il valore risultate:**
+
 ```
 Scenario Outline: Evaluating arithmetic operations with two integer parameters
     Given I have a Calculator
