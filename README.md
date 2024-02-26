@@ -162,6 +162,19 @@ Scenario Outline: Evaluating arithmetic operations with two integer parameters
 
 Facendo così gli acceptance test eseguono tutti correttamente e il sistema ATDD è perfettamente integrato in Scala3. 
 
+**Visual Studio Code** la migrazione del progetto su quest'ultimo non è facile. Il compilatore migliore per utilizzare Cucumber è IntelliJ IDEA, in quanto la configurazione è molto più rapida.
+In visual studio code bisogna installare due plugin: 
+ - Cucumber (Gherkin) Full Support
+ - Cucumber Quick
+Fatto ciò ancora non è sufficiente e bisogna creare una cartella .vscode/ nella root di progetto e inserire al suo interno due file. Uno di settings.json (quindi .vscode/settings.json) che abiliterà l'esecuzione da parte di Cucumber Quick, ma solo per alcuni framework supportati:
+ * Protractor Cucumber
+ * WebDriverIo Cucumber
+ * Cypress Cucumber Pre-processor
+ * Native CucumberJS
+ * Serenity-JS
+
+E l'altro sarà un file launch.json (quindi .vscode/launch.json) per la configurazione di uno dei framework che supporta cucumber.
+
 
 
 
