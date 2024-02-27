@@ -59,4 +59,9 @@ public class Calculator {
         numbers.remove(1);
     }
 
+    public static class Main {
+        public static void main(String[] args) {
+        }
+    }
+
 }
