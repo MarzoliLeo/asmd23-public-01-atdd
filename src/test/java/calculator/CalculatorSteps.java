@@ -43,30 +43,21 @@ public class CalculatorSteps {
 
     /* More advanced Steps */
 
-    @Given("an integer operation {string}")
-    public void givenAnIntegerOperation(String s) {
-            switch (s) {
-                case "+"	->	this.calculator.executeOperation("+");
-                case "-"	->	this.calculator.executeOperation("-");
-                case "*"	->	this.calculator.executeOperation("*");
-                case "/"	->	this.calculator.executeOperation("/");
-                default		->	throw new IllegalStateException();
-            }
-
-    }
-
-    @When("I provide a first number {int}")
-    public void iProvideAFirstNumberN(int arg0) {
+    @When("I provide a first number {int} and a second number {int}")
+    public void iProvideAFirstNumberN(int arg0, int arg1) {
         this.calculator.enter(arg0);
+        this.calculator.enter(arg1);
     }
 
-    @And("I provide a second number {int}")
-    public void iProvideASecondNumberN(int arg0) {
-        this.calculator.enter(arg0);
-    }
-
-    @Then("the operation evaluates to {int}")
-    public void theOperationEvaluatesToResult(int arg0) {
+    @Then("the operation evaluates to {int} with the operator {string}")
+    public void theOperationEvaluatesToResult(int arg0, String arg1) {
+        switch (arg1) {
+            case "+"	->	this.calculator.add();
+            case "-"	->	this.calculator.subtract();
+            case "*"	->	this.calculator.multiply();
+            case "/"	->	this.calculator.divide();
+            default		->	throw new IllegalStateException();
+        }
         if (arg0 != this.calculator.getResult()) {
             throw new IllegalStateException();
         }

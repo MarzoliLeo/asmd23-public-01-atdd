@@ -5,11 +5,6 @@ import java.util.*;
 public class Calculator {
     private List<Integer> numbers = new LinkedList<>();
 
-    private int resAdd = 0;
-    private int resMul = 0;
-    private int resSub = 0;
-    private int resDiv = 0;
-
     public void enter(int i){
         numbers.add(i);
         if (numbers.size() > 2){
@@ -17,14 +12,12 @@ public class Calculator {
         }
     }
 
-    public int add(){
+    public void add(){
         if (numbers.size() != 2){
             throw new IllegalStateException();
         }
         numbers.set(0, numbers.get(0) + numbers.get(1));
-        int res = numbers.get(0);
         numbers.remove(1);
-        return res;
     }
 
     public int getResult(){
@@ -35,17 +28,15 @@ public class Calculator {
     }
 
     /* New operations */
-    public int multiply() {
+    public void multiply() {
         if (numbers.size() != 2) {
             throw new IllegalStateException();
         }
         numbers.set(0, numbers.get(0) * numbers.get(1));
-        int res = numbers.get(0);
         numbers.remove(1);
-        return res;
     }
 
-    public int subtract() {
+    public void subtract() {
         if (numbers.size() != 2) {
             throw new IllegalStateException();
         }
@@ -53,12 +44,10 @@ public class Calculator {
             numbers.set(0, numbers.get(0) - numbers.get(1));
         else
             throw new ArithmeticException();
-        int res = numbers.get(0);
         numbers.remove(1);
-        return res;
     }
 
-    public int divide() {
+    public void divide() {
         if (numbers.size() != 2) {
             throw new IllegalStateException();
         }
@@ -67,22 +56,7 @@ public class Calculator {
         else
             throw new ArithmeticException();
 
-        int res = numbers.get(0);
         numbers.remove(1);
-        return res;
-    }
-
-
-    /* Aux methods */
-    public int executeOperation(String op)
-    {
-        return switch (op) {
-            case "+" -> resAdd = add();
-            case "-" -> resSub = subtract();
-            case "*" -> resMul = multiply();
-            case "/" -> resDiv = divide();
-            default -> 0;
-        };
     }
 
 }
