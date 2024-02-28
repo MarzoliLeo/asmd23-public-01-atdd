@@ -186,3 +186,14 @@ Search here: https://bitbucket.org/mviroli/oop2023-esami (2023, 2022,. . . )
 #### __Task 3: implementazione__.
 
 Scelto uno dei progetti all'interno del repo bitbucket ho analizzato il comportamento del singolo definendo una serie di Acceptance Tests.
+
+Ho preso quelle che erano i requirements dell'applicazione e li ho trasformati in Acceptance Tests all'interno della classe: "GUI_exam.feature" __(src/test/resources/features/GUI_exam.feature)__
+
+per fare ciò ho dovuto definire una serie di nuovi steps all'interno del file: "GUIExamSteps" __(src/test/java/GUI_exam/GUIExamSteps.java)__ ed inserire dentro ciascuno di essi la business logic dell'applicazione.
+Le difficoltà riscontrate nel procedimento sono emerse durante lo sviluppo dei vari test ed hanno prodotto come risultato una leggera rivisitazione delle logiche implementative.
+Infatti, siccome il progetto è strutturato per utilizzare una GUI e separa la logica implementativa, questo dopo aver effettuato la business logic, mappa le "Position" della "Grid" in una map di "<JButton,Position>" e l'incremento delle celle avveniva soltanto per una questione estetica, ciò che ho dovuto modificare è stato
+simulare il comportamento incrementale da parte della business logic esponendo la visibilità della lista "marks" che tiene traccia di tutte le "Position". Un altro piccolo cambiamento è stato aggiungere un booleano per verificare che l'applicazione si chiudesse al momento del "Game Over". 
+
+Dunque, in conclusione per rispondere alla domanda di partenza di questo task: un'applicazione ha bisogno di considerare all'interno del suo design, per poter definire facilmente al suo interno degli acceptance test, il concetto di visibilità per alcune delle sue funzionalità principale. Ovvero, ciò che prima era privato
+della business logic, viene di conseguenza reso visibile quindi pubblico per poter essere manipolato e testato, in caso cui non si acceda direttamente ad un elemento privato, comunque lo si fa indirettamente tramite getter or setter o tramite l'introduzione di variabili utili a monitorare lo stato. Visto che in un linguaggio ad oggetti come Java,
+le variabili di una classe dovrebbero essere privati, si può ovviare all'introduzione di public tramite un package protected.

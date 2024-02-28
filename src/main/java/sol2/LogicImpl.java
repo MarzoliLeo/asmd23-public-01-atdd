@@ -63,7 +63,7 @@ public class LogicImpl implements Logic {
         return marks;
     }
 
-    //For testing purposes
+    //For testing
     public boolean isProgramClosed() {
         return isProgramClosed;
     }
