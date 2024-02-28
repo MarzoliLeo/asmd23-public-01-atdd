@@ -11,6 +11,7 @@ public class LogicImpl implements Logic {
 
     private List<Position> marks = new LinkedList<>();
     private boolean moving = false;
+    private boolean isProgramClosed;    // For test purposes.
 
     public LogicImpl(int size) {
         this.size = size;
@@ -52,6 +53,7 @@ public class LogicImpl implements Logic {
 
     @Override
     public boolean isOver() {
+        isProgramClosed = true;
         return this.marks.stream().anyMatch(p -> p.getX() == this.size || p.getY() == -1);
     }
 
@@ -59,5 +61,10 @@ public class LogicImpl implements Logic {
     @Override
     public List<Position> getMarks() {
         return marks;
+    }
+
+    //For testing purposes
+    public boolean isProgramClosed() {
+        return isProgramClosed;
     }
 }

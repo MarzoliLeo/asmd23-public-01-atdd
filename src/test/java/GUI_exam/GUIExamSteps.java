@@ -2,7 +2,6 @@ package GUI_exam;
 
 import io.cucumber.java.en.*;
 import sol2.GUI;
-import sol2.Logic;
 import sol2.LogicImpl;
 import sol2.Position;
 
@@ -16,7 +15,7 @@ public class GUIExamSteps {
     @Given("una griglia di celle di dimensione prefissata {int}")
     public void unaGrigliaDiCelleDiDimensionePrefissata(int arg0) { this.grid = new GUI(arg0); }
 
-    @Given("una logica per il sistema di dimensione prefissata {int}")
+    @Given("una logica per il sistema ed una griglia di dimensione prefissata {int}")
     public void unaLogicaPerIlSistema(int arg0) { this.logic = new LogicImpl(arg0); }
 
     @When("l'utente clicca su una cella in posizione {int} and {int}")
@@ -69,4 +68,15 @@ public class GUIExamSteps {
         assertTrue(this.logic.getMarks().contains(expectedPosition) && !this.logic.getMarks().contains(originalPosition));
     }
 
+    @When("una cella {int},{int} selezionata raggiunge il limite della griglia")
+    public void unaCellaXYSelezionataRaggiungeIlLimiteDellaGriglia(int arg0, int arg1) {
+        Position pos  = new Position(arg0, arg1);
+        this.logic.getMarks().add(pos);
+        assertTrue(this.logic.isOver());
+    }
+
+    @Then("l'applicazione dovrebbe chiudersi")
+    public void lApplicazioneDovrebbeChiudersi() {
+        assertTrue(this.logic.isProgramClosed());
+    }
 }

@@ -2,7 +2,7 @@ Feature: Selezione e Spostamento delle Celle
 
   Background:
     Given una griglia di celle di dimensione prefissata 10
-    Given una logica per il sistema di dimensione prefissata 10
+    Given una logica per il sistema ed una griglia di dimensione prefissata 10
 
   Scenario Outline: Utente seleziona una cella
   When l'utente clicca su una cella in posizione <x> and <y>
@@ -35,12 +35,12 @@ Feature: Selezione e Spostamento delle Celle
   | 2 | 3 | 2             | 2             |
   | 3 | 4 | 3             | 3             |
 
-  Scenario: Utente seleziona qualsiasi cella dopo che le celle hanno iniziato a muoversi
-  Given che una griglia di celle con alcune celle già in movimento
-  When l'utente clicca su qualsiasi cella
-  Then tutte le celle selezionate dovrebbero spostarsi di una posizione verso l'alto e verso destra
-
-  Scenario: La cella selezionata raggiunge il limite della griglia
-  Given che una griglia di celle con alcune celle già in movimento
-  When una cella selezionata raggiunge il limite della griglia
+  Scenario Outline: La cella selezionata raggiunge il limite della griglia
+  Given con alcune celle già selezionate <x>,<y>
+  When una cella <x>,<y> selezionata raggiunge il limite della griglia
   Then l'applicazione dovrebbe chiudersi
+  Examples:
+  | x   | y   |
+  | 5   | -1  |
+  | 10  | -1  |
+  | 10  | 5   |
