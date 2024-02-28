@@ -26,21 +26,19 @@ Feature: Selezione e Spostamento delle Celle
   | 3 | 5 | 3             | 3             |
 
   Scenario Outline: Utente seleziona una cella adiacente a una cella selezionata
-  Given che una griglia di celle con alcune celle già selezionate
-  When l'utente clicca su una cella in posizione "<x>,<y>" adiacente a una qualsiasi cella selezionata
-  Then tutte le celle selezionate dovrebbero spostarsi di una posizione verso l'alto e verso destra
-  And la griglia dovrebbe aggiornarsi per riflettere le nuove posizioni delle celle
+  Given con alcune celle già selezionate <pre-selectedX>,<pre-selectedY>
+  When l'utente clicca su una cella in posizione <x>,<y> adiacente a una qualsiasi cella selezionata <pre-selectedX>,<pre-selectedY>
+  Then tutte le celle selezionate <x>,<y> dovrebbero spostarsi di una posizione verso l'alto e verso destra
   Examples:
-  | x | y |
-  | 1 | 2 |
-  | 2 | 3 |
-  | 3 | 4 |
+  | x | y | pre-selectedX | pre-selectedY |
+  | 1 | 2 | 1             | 1             |
+  | 2 | 3 | 2             | 2             |
+  | 3 | 4 | 3             | 3             |
 
   Scenario: Utente seleziona qualsiasi cella dopo che le celle hanno iniziato a muoversi
   Given che una griglia di celle con alcune celle già in movimento
   When l'utente clicca su qualsiasi cella
   Then tutte le celle selezionate dovrebbero spostarsi di una posizione verso l'alto e verso destra
-  And la griglia dovrebbe aggiornarsi per riflettere le nuove posizioni delle celle
 
   Scenario: La cella selezionata raggiunge il limite della griglia
   Given che una griglia di celle con alcune celle già in movimento

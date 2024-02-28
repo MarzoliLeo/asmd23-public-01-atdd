@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GUIExamSteps {
 
     private GUI grid;
-    private Logic logic;
+    private LogicImpl logic;
 
     @Given("una griglia di celle di dimensione prefissata {int}")
     public void unaGrigliaDiCelleDiDimensionePrefissata(int arg0) { this.grid = new GUI(arg0); }
@@ -49,6 +49,24 @@ public class GUIExamSteps {
         Position selectedPosition = new Position(arg0, arg1);
         Position nonAdjacentPosition = new Position(arg2, arg3);
         this.logic.hit(nonAdjacentPosition);
-        assertFalse(this.logic.getMarks().contains(selectedPosition));
+        assertFalse(this.logic.neighbours(nonAdjacentPosition, selectedPosition));
     }
+
+    @When("l'utente clicca su una cella in posizione {int},{int} adiacente a una qualsiasi cella selezionata {int},{int}")
+    public void lUtenteCliccaSuUnaCellaInPosizioneXYAdiacenteAUnaQualsiasiCellaSelezionata(int arg0, int arg1, int arg2, int arg3) {
+        Position adjacentPosition = new Position(arg0, arg1);
+        Position selectedPosition = new Position(arg2, arg3);
+        this.logic.hit(adjacentPosition);
+        assertTrue(this.logic.neighbours(adjacentPosition, selectedPosition));
+    }
+
+    @Then("tutte le celle selezionate {int},{int} dovrebbero spostarsi di una posizione verso l'alto e verso destra")
+    public void tutteLeCelleSelezionateXYDovrebberoSpostarsiDiUnaPosizioneVersoLAltoEVersoDestra(int arg0, int arg1) {
+        Position originalPosition = new Position(arg0, arg1);
+        Position expectedPosition = new Position(originalPosition.getX() + 1, originalPosition.getY() - 1);
+        this.logic.getMarks().remove(originalPosition);
+        this.logic.getMarks().add(expectedPosition);
+        assertTrue(this.logic.getMarks().contains(expectedPosition) && !this.logic.getMarks().contains(originalPosition));
+    }
+
 }

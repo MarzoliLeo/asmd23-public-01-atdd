@@ -30,7 +30,7 @@ public class LogicImpl implements Logic {
         return Optional.of(this.marks.size());
     }
 
-    private boolean neighbours(Position p1, Position p2){
+    public boolean neighbours(Position p1, Position p2){
         return Math.abs(p1.getX()-p2.getX()) <= 1 && Math.abs(p1.getY()-p2.getY()) <= 1;
     }
 
