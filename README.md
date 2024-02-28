@@ -1,10 +1,10 @@
 # Laboratorio 1 - Report
 ## Lavoro svolto:
-### Task 1: Calculator.
+### **Task 1: Calculator.**
 Specification: the repo has a calculator example (with Gherkin specification, step implementation, and production code). Play with it. Add examples
 and operations, use all Gherkin features. Strictly use ATDD. Does everything work as expected?
 
-#### Task 1: Implementazione.
+#### __Task 1: Implementazione.__
 Installando correttamente i plugin, Gherking e Cucumber for Java, tutti i test eseguono correttamente. 
 
 **Ho voluto testare le funzionalità del linguaggio** inserendo una nuova operazione di moltiplicazione nella calcolatrice e ho definito dei nuovi scenarios in Gherkin, seguendo le varie modalità equivalenti tra di loro.
@@ -80,13 +80,13 @@ public void theOperationEvaluatesToResult(int arg0, String arg1) {
 
 Facendo ciò si può simulare a pieno il comportamento della calcolatrice e volendo aggiungere e testare una qualsiasi operazione facilmente.
 
-### Task 2: Tooling.
+### **Task 2: Tooling.**
 Specification: Experiment with installing/using Cucumber with Scala and/or in VSCode. Is VSCode better at all here? Does Cucumber play well with
 Scala 3?
 
 Per poter utilizzare cucumber in Scala bisogna integrare un nuovo plugin "Cucumber for Scala" se lo si vuole utilizzare in IntelliJ.
 
-#### Task 2: Implementazione.
+#### __Task 2: Implementazione.__
 
 All'interno del progetto si è implementata una versione differente della calcolatrice in Scala3. Questa appare nel seguente modo:
 ```
@@ -166,6 +166,7 @@ Facendo così gli acceptance test eseguono tutti correttamente e il sistema ATDD
 In visual studio code bisogna installare due plugin: 
  - Cucumber (Gherkin) Full Support
  - Cucumber Quick
+
 Fatto ciò ancora non è sufficiente e bisogna creare una cartella .vscode/ nella root di progetto e inserire al suo interno due file. Uno di settings.json (quindi .vscode/settings.json) che abiliterà l'esecuzione da parte di Cucumber Quick, ma solo per alcuni framework supportati:
  * Protractor Cucumber
  * WebDriverIo Cucumber
@@ -176,5 +177,12 @@ Fatto ciò ancora non è sufficiente e bisogna creare una cartella .vscode/ nell
 E l'altro sarà un file launch.json (quindi .vscode/launch.json) per la configurazione di uno dei framework che supporta cucumber.
 
 
+### **Task 3: Reengineer.**
+Specification: Take an existing implemented small app with GUI, e.g. an OOP exam. Write Gherkin specifications explaining what the system is
+expected to do, and make acceptance tests pass. Does the system need a refactor of implementation? What does it tell us about how
+an application has to be designed to be easily acceptance tested?
+Search here: https://bitbucket.org/mviroli/oop2023-esami (2023, 2022,. . . )
 
+#### __Task 3: implementazione__.
 
+Scelto uno dei progetti all'interno del repo bitbucket ho analizzato il comportamento del singolo definendo una serie di Acceptance Tests.

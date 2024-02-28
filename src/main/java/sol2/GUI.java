@@ -19,8 +19,8 @@ public class GUI extends JFrame {
         
         JPanel panel = new JPanel(new GridLayout(size,size));
         this.getContentPane().add(panel);
-        
-        ActionListener al = e -> {
+
+ /*       ActionListener al = e -> {
             var jb = (JButton)e.getSource();
             this.logic.hit(this.cells.get(jb));
             for (var entry: this.cells.entrySet()){
@@ -30,6 +30,14 @@ public class GUI extends JFrame {
                         .map(String::valueOf)
                         .orElse(" "));
             }
+            if (this.logic.isOver()){
+                System.exit(0);
+            }
+        };*/
+        ActionListener al = e -> {
+            var jb = (JButton)e.getSource();
+            Optional<Integer> number = this.logic.hit(this.cells.get(jb));
+            number.ifPresent(n -> jb.setText(String.valueOf(n)));
             if (this.logic.isOver()){
                 System.exit(0);
             }

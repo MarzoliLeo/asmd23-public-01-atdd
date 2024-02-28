@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class LogicImpl implements Logic {
 
     private final int size;
+
     private List<Position> marks = new LinkedList<>();
     private boolean moving = false;
 
@@ -52,5 +53,11 @@ public class LogicImpl implements Logic {
     @Override
     public boolean isOver() {
         return this.marks.stream().anyMatch(p -> p.getX() == this.size || p.getY() == -1);
+    }
+
+    //For testing
+    @Override
+    public List<Position> getMarks() {
+        return marks;
     }
 }

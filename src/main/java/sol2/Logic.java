@@ -1,5 +1,6 @@
 package sol2;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface Logic {
@@ -9,4 +10,8 @@ public interface Logic {
     Optional<Integer> getMark(Position position);
 
     boolean isOver();
+
+
+    //For testing
+    List<Position> getMarks();
 }
