@@ -38,4 +38,17 @@ public class GUIExamSteps {
         this.logic.getMarks().add(position);
         assertTrue(this.logic.getMark(position).isPresent() && this.logic.getMark(position).get() == this.logic.getMarks().indexOf(position) + 1);
     }
+
+    @Given("con alcune celle già selezionate {int},{int}")
+    public void cheUnaGrigliaDiCelleConAlcuneCelleGiàSelezionate(int arg0, int arg1) {
+        this.logic.hit(new Position(arg0, arg1));
+    }
+
+    @When("l'utente clicca su una cella in posizione {int},{int} che non è adiacente a nessuna cella selezionata {int},{int}")
+    public void lUtenteCliccaSuUnaCellaInPosizioneXYCheNonÈAdiacenteANessunaCellaSelezionata(int arg0, int arg1, int arg2, int arg3) {
+        Position selectedPosition = new Position(arg0, arg1);
+        Position nonAdjacentPosition = new Position(arg2, arg3);
+        this.logic.hit(nonAdjacentPosition);
+        assertFalse(this.logic.getMarks().contains(selectedPosition));
+    }
 }
