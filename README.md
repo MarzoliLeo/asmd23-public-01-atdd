@@ -1,4 +1,4 @@
-# Laboratorio 1 - Report
+# Laboratorio 01 - 01Lab Requirements, Acceptance Testing, and BDD/ATDD - Report
 ## Lavoro svolto:
 ### **Task 1: Calculator.**
 Specification: the repo has a calculator example (with Gherkin specification, step implementation, and production code). Play with it. Add examples
@@ -88,7 +88,7 @@ Per poter utilizzare cucumber in Scala bisogna integrare un nuovo plugin "Cucumb
 
 #### __Task 2: Implementazione.__
 
-All'interno del progetto si è implementata una versione differente della calcolatrice in Scala3. Questa appare nel seguente modo:
+All'interno del progetto si è implementata una versione differente della calcolatrice in Scala3 nel file [CalculatorScala](src/main/java/calculator/CalculatorScala.scala). Questa appare nel seguente modo:
 ```
 trait CalculatorScala {
   def enter(i: Int): Unit
@@ -141,12 +141,12 @@ object CalculatorScala {
   def apply() : CalculatorScala = new CalculatorScalaImpl
 }
 ```
-si è poi definito un nuovo "calculator Step" che utilizza i metodi offerti da questa nuova implementazione:
+si è poi definito un nuovo [CalculatorStepsScala](src/test/java/calculator/CalculatorStepsScala.java) che utilizza i metodi offerti da questa nuova implementazione :
 ```
 @Given("I have a Scala Calculator")
     public void iHaveAScalaCalculator(){ this.calculatorScala = CalculatorScala.apply(); }
 ```
-e si è modificato opportunamente tutte le stringhe degli acceptance test per fare riferimento all'utilizzo del nuovo calcolatore Scala, ecco un esempio:
+e si è modificato opportunamente tutte le stringhe degli acceptance test dentro al file apposito [Calculator-outline-Scala](src/test/resources/features/calculator-outline-scala.feature) per fare riferimento all'utilizzo del nuovo calcolatore Scala, ecco un esempio:
 ```
 Scenario Outline: Evaluating arithmetic operations with two integer parameters
     Given I have a Scala Calculator
