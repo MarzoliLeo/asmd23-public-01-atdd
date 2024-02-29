@@ -187,8 +187,8 @@ Search here: https://bitbucket.org/mviroli/oop2023-esami (2023, 2022,. . . )
 
 Scelto uno dei progetti all'interno del repo bitbucket (ho preferito il a01b.sol2) e dopo averlo importato nel mio progetto, ho analizzato il comportamento del singolo definendo una serie di Acceptance Tests.
 
-Ho preso quelle che erano i requirements dell'applicazione e li ho trasformati in Acceptance Tests all'interno della classe: "GUI_exam.feature" __(src/test/resources/features/GUI_exam.feature)__
-per fare ciò ho dovuto definire una serie di nuovi steps all'interno del file: "GUIExamSteps.java" __(src/test/java/GUI_exam/GUIExamSteps.java)__ ed inserire dentro ciascuno di essi la business logic dell'applicazione.
+Ho preso quelle che erano i requirements dell'applicazione e li ho trasformati in Acceptance Tests all'interno della classe: [GUI_exam.feature](src/test/resources/features/GUI_exam.feature) __(src/test/resources/features/GUI_exam.feature)__
+per fare ciò ho dovuto definire una serie di nuovi steps all'interno del file: [GUIExamSteps.java](src/test/java/GUI_exam/GUIExamSteps.java) __(src/test/java/GUI_exam/GUIExamSteps.java)__ ed inserire dentro ciascuno di essi la business logic dell'applicazione.
 Le difficoltà riscontrate nel procedimento sono emerse durante lo sviluppo dei vari test ed hanno prodotto come risultato una leggera rivisitazione delle logiche implementative.
 Infatti, siccome il progetto è strutturato per utilizzare una GUI e separa la logica implementativa, questo dopo aver effettuato la business logic, mappa le "Position" della "Grid" in una map di "<JButton,Position>" e l'incremento delle celle avveniva soltanto per una questione estetica, ciò che ho dovuto modificare è stato
 simulare il comportamento incrementale da parte della business logic esponendo la visibilità della lista "marks" che tiene traccia di tutte le "Position". Un altro piccolo cambiamento è stato aggiungere un booleano per verificare che l'applicazione si chiudesse al momento del "Game Over". 
