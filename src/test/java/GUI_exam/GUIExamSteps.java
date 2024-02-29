@@ -8,12 +8,7 @@ import sol2.Position;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GUIExamSteps {
-
-    private GUI grid;
     private LogicImpl logic;
-
-    @Given("una griglia di celle di dimensione prefissata {int}")
-    public void unaGrigliaDiCelleDiDimensionePrefissata(int arg0) { this.grid = new GUI(arg0); }
 
     @Given("una logica per il sistema ed una griglia di dimensione prefissata {int}")
     public void unaLogicaPerIlSistema(int arg0) { this.logic = new LogicImpl(arg0); }

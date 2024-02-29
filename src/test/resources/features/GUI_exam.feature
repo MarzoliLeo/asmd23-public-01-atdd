@@ -1,7 +1,6 @@
 Feature: Selezione e Spostamento delle Celle
 
   Background:
-    Given una griglia di celle di dimensione prefissata 10
     Given una logica per il sistema ed una griglia di dimensione prefissata 10
 
   Scenario Outline: Utente seleziona una cella
